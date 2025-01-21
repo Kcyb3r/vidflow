@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>VidFlow - Stream Seamlessly</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="brand">
+            <h1>Vid<span class="highlight">Flow</span></h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search videos...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="player.html">Player</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="home-container" id="homeSection">
+            <div class="hero-section">
+                <h1>Welcome to <span class="highlight">VidFlow</span></h1>
+                <p>Your Ultimate Streaming Experience</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-film"></i>
+                    <h3>High Quality Content</h3>
+                    <p>Stream your favorite movies in HD quality</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Fast Streaming</h3>
+                    <p>No buffering, instant playback</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Friendly</h3>
+                    <p>Watch on any device, anywhere</p>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h2>Start Watching Now</h2>
+                <a href="player.html" class="cta-button">Go to Player</a>
+            </div>
+        </div>
+
+        <div class="video-container" id="playerSection" style="display: none;">
+            <div class="movie-slider">
+                <h2>Featured Movies</h2>
+                <div class="slider-container">
+                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-track" id="sliderTrack">
+                        <!-- Slides will be populated by JavaScript -->
+                    </div>
+                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="video-player">
+                <div class="video-wrapper">
+                    <video id="mainPlayer" controls>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-thumbnail" id="videoThumbnail">
+                        <img src="" alt="Video thumbnail">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h2 id="videoTitle">Video Title</h2>
+                    <div class="video-stats">
+                        <span id="views">0 views</span>
+                        <div class="video-actions">
+                            <button><i class="fas fa-thumbs-up"></i> Like</button>
+                            <button><i class="fas fa-share"></i> Share</button>
+                            <button><i class="fas fa-plus"></i> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="playlist">
+                <h3>ALL VIDEOS</h3>
+                <div class="playlist-items" id="playlistItems">
+                    <!-- Playlist items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
