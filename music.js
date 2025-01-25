@@ -4,7 +4,7 @@ const songs = [
         id: 1,
         title: 'Tere Vaaste',
         artist: 'Varun Jain',
-        thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrOqcqi4Se9WuOEW3QIpSVJ827Ua_p0beitQ&s',
+        thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHzxs65LfcdfVr2GCVg0EnKjkaDEucA2aMLg&s',
         audioUrl: 'terevaaste.mp3',
         duration: '3:45',
         views: '1.2M',
