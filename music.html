@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>VidFlow - Music</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="brand">
+            <h1>Vid<span class="highlight">Flow</span></h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search songs...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+          
+            <a href="music.html" class="active">Music</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="music-page">
+            <div class="music-header">
+                <h1>Music Collection</h1>
+                <div class="music-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="trending">Trending</button>
+                    <button class="filter-btn" data-filter="new">New Releases</button>
+                </div>
+            </div>
+
+            <div class="featured-song">
+                <div class="featured-song-info">
+                    <h2>Featured Track</h2>
+                    <h3>Tere Vaaste</h3>
+                    <p>Varun Jain • 1.2M views</p>
+                    <div class="featured-controls">
+                        <audio id="featuredAudio" src="https://drive.google.com/uc?export=download&id=1-3W7NJrklg79r7YVu7drH71kLO774oTM"></audio>
+                        <button class="play-featured" onclick="handleFeaturedPlayback()">
+                            <i class="fas fa-play"></i> Play Now
+                        </button>
+                        <button class="add-playlist"><i class="fas fa-plus"></i> Add to Playlist</button>
+                    </div>
+                </div>
+                <div class="featured-song-visual">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL4e7L4g9ROaKP0ySLuoU8690fFfVWV7372g&s" alt="song">
+                </div>
+            </div>
+
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="bollywood">Bollywood</button>
+                <button class="category-btn" data-category="punjabi">Punjabi</button>
+                <button class="category-btn" data-category="international">International</button>
+            </div>
+
+            <div class="music-categories">
+                <div class="category">
+                    <h3>Trending Now</h3>
+                    <div class="music-grid" id="trendingGrid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h3>New Releases</h3>
+                    <div class="music-grid" id="newReleasesGrid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h3>All Songs</h3>
+                    <div class="music-grid" id="allSongsGrid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function handleFeaturedPlayback() {
+            const audio = document.getElementById('featuredAudio');
+            const button = document.querySelector('.play-featured i');
+            
+            if (audio.paused) {
+                document.querySelectorAll('audio').forEach(a => a.pause());
+                audio.play();
+                button.className = 'fas fa-pause';
+            } else {
+                audio.pause();
+                button.className = 'fas fa-play';
+            }
+        }
+    </script>
+    <script src="music.js"></script>
+</body>
+</html> 
