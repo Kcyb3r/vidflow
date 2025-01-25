@@ -11,7 +11,9 @@
 <body>
     <nav>
         <div class="brand">
-            <h1>Vid<span class="highlight">Flow</span></h1>
+            <a href="index.html">
+                <h1><span>Vid</span><span class="highlight">Flow</span></h1>
+            </a>
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Search videos...">
@@ -19,7 +21,8 @@
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
-            <a href="player.html">Player</a>
+            
+            <a href="music.html">Music</a>
         </div>
     </nav>
 
@@ -68,9 +71,8 @@
 
             <div class="video-player">
                 <div class="video-wrapper">
-                    <video id="mainPlayer" controls>
-                        <source src="" type="video/mp4">
-                        Your browser does not support the video tag.
+                    <video width="720" height="405" controls>
+                        <source src="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" type="video/mp4">
                     </video>
                     <div class="video-thumbnail" id="videoThumbnail">
                         <img src="" alt="Video thumbnail">
@@ -97,6 +99,18 @@
                 <div class="playlist-items" id="playlistItems">
                     <!-- Playlist items will be populated by JavaScript -->
                 </div>
+            </div>
+        </div>
+
+        <div class="music-container" id="music" style="display: none;">
+            <h2>Music Collection</h2>
+            <div class="music-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="trending">Trending</button>
+                <button class="filter-btn" data-filter="new">New Releases</button>
+            </div>
+            <div class="music-grid">
+                <!-- Songs will be loaded by JavaScript -->
             </div>
         </div>
     </main>
