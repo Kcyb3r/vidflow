@@ -21,6 +21,8 @@ A modern, responsive music collection website built with HTML, CSS, and JavaScri
 
 ## Preview 🖼️
 
-[Add screenshots or GIF of your website here]
+![image](https://github.com/user-attachments/assets/831852c9-b674-4f19-82ba-27f4ec5283a8)
 
-## Created by Kcyb3r 👨‍💻
+![image](https://github.com/user-attachments/assets/4b72637c-8628-4df9-9072-80cec20f0c91)
+
+## Created by Kcyb3r...
