@@ -11,76 +11,74 @@
 <body>
     <nav>
         <div class="brand">
-            <h1>Vid<span class="highlight">Flow</span></h1>
+            <a href="index.html">
+                <h1><span>Vid</span><span class="highlight">Flow</span></h1>
+            </a>
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Search songs...">
-            <button><i class="fas fa-search"></i></button>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-          
             <a href="music.html" class="active">Music</a>
         </div>
     </nav>
 
     <main>
-        <div class="music-page">
-            <div class="music-header">
-                <h1>Music Collection</h1>
-                <div class="music-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="trending">Trending</button>
-                    <button class="filter-btn" data-filter="new">New Releases</button>
-                </div>
-            </div>
-
+        
+    
+        <div class="featured-section">
             <div class="featured-song">
-                <div class="featured-song-info">
-                    <h2>Featured Track</h2>
-                    <h3>Tere Vaaste</h3>
-                    <p>Varun Jain • 1.2M views</p>
-                    <div class="featured-controls">
-                        <audio id="featuredAudio" src="https://drive.google.com/uc?export=download&id=1-3W7NJrklg79r7YVu7drH71kLO774oTM"></audio>
-                        <button class="play-featured" onclick="handleFeaturedPlayback()">
-                            <i class="fas fa-play"></i> Play Now
-                        </button>
-                        <button class="add-playlist"><i class="fas fa-plus"></i> Add to Playlist</button>
+                <div class="featured-content">
+                    <div class="featured-info">
+                        <div class="featured-header">
+                            <span class="tag">Featured</span>
+                            <span class="tag trending"><i class="fas fa-fire"></i> Trending</span>
+                        </div>
+                        <h2>Music Collection</h2>
+                        <p class="artist">by Kcyb3r</p>
+                       
                     </div>
-                </div>
-                <div class="featured-song-visual">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL4e7L4g9ROaKP0ySLuoU8690fFfVWV7372g&s" alt="song">
+                    <div class="featured-image">
+                        <video src="https://static.vecteezy.com/system/resources/previews/039/859/545/mp4/music-equalizer-hologram-audio-spectrum-4k-footage-free-video.mp4" autoplay loop muted></video>
+                        <div class="image-overlay"></div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="category-filters">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="bollywood">Bollywood</button>
-                <button class="category-btn" data-category="punjabi">Punjabi</button>
-                <button class="category-btn" data-category="international">International</button>
+        <div class="categories-section">
+            <div class="section-header">
+                <h2>Browse Categories</h2>
+                <div class="category-filters">
+                    <button class="category-btn active" data-category="all">
+                        <i class="fas fa-border-all"></i> All
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="music-grid-section">
+            <div class="section-header">
+                <h2><i class="fas fa-fire"></i> Trending Now</h2>
+            </div>
+            <div class="music-grid" id="trendingGrid">
+                <!-- Will be populated by JavaScript -->
             </div>
 
-            <div class="music-categories">
-                <div class="category">
-                    <h3>Trending Now</h3>
-                    <div class="music-grid" id="trendingGrid">
-                        <!-- Will be populated by JavaScript -->
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2><i class="fas fa-star"></i>Songs ></h2>
+            </div>
+            <div class="music-grid" id="newReleasesGrid">
+                <!-- Will be populated by JavaScript -->
+            </div>
 
-                <div class="category">
-                    <h3>New Releases</h3>
-                    <div class="music-grid" id="newReleasesGrid">
-                        <!-- Will be populated by JavaScript -->
-                    </div>
-                </div>
-
-                <div class="category">
-                    <h3>All Songs</h3>
-                    <div class="music-grid" id="allSongsGrid">
-                        <!-- Will be populated by JavaScript -->
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2><i class="fas fa-music"></i> All Songs</h2>
+            </div>
+            <div class="music-grid" id="allSongsGrid">
+                <!-- Will be populated by JavaScript -->
             </div>
         </div>
     </main>
