@@ -28,4 +28,4 @@ A modern, responsive music collection website built with HTML, CSS, and JavaScri
 ## Created by Kcyb3r...
 
 
-last updated on 26 Jan 2025
+updated on 27 Jan 2025
