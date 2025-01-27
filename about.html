@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidFlow - About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global styles that might have been in style.css */
+        :root {
+            --primary-color: #ff4d4d;
+            --bg-dark: #0f0f0f;
+            --bg-card: #1f1f1f;
+            --text-light: #cccccc;
+            --border-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Page specific styles */
+        .fullscreen-section {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .about-title {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            gap: 0.2rem;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .about-title span:first-child {
+            color: #fff;
+        }
+
+        .about-title span.highlight {
+            color: var(--primary-color);
+        }
+
+        .about-corner {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 500;
+            z-index: 1000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-corner i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .about-corner:hover i {
+            transform: translateX(-5px);
+        }
+
+        .about-description {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-text {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .request-section {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-control {
+            background-color: #2d2d2d;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            background-color: #2d2d2d;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(255, 77, 77, 0.25);
+            color: #fff;
+        }
+
+        .form-control::placeholder {
+            color: #888;
+        }
+
+        .btn-request {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            color: white;
+            font-weight: 500;
+        }
+
+        .btn-request:hover {
+            background-color: #ff3333;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .exit-fullscreen {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        kbd {
+            background-color: #333;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Animation for success message */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .success-message {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Hide any default about indicators */
+        .about-indicator {
+            display: none;
+        }
+        
+        /* Remove any default page indicators */
+        body > i,
+        body > span,
+        body > .about-text {
+            display: none;
+        }
+
+        /* Hide the info button */
+        .info-button,
+        i[title="About"],
+        .about-icon,
+        body > i.fa-info-circle {
+            display: none !important;
+        }
+
+        /* Hide any information indicators */
+        .info-indicator,
+        [data-info],
+        .info-section {
+            display: none !important;
+        }
+
+        /* Add nav styles */
+        nav {
+            background-color: var(--bg-dark);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand h1 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            font-size: 1.5rem;
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .brand span:first-child {
+            color: #fff;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+        }
+
+        .brand a {
+            text-decoration: none !important;
+        }
+
+        .brand h1 span {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links .active {
+            color: var(--primary-color);
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .back-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* Add these new styles */
+        /* Common styles for both mobile and desktop */
+        .desktop-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .request-section,
+        .follow-section {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-icon {
+            color: var(--text-light);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .creator-section {
+            margin-top: 2rem;
+        }
+
+        .creator-section .fa-heart {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .studio-logo img {
+            transition: transform 0.3s ease;
+            mix-blend-mode: lighten;
+            width: 100px;
+            height: 100px;
+        }
+
+        .studio-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 992px) {
+            .desktop-layout {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 3rem;
+            }
+
+            /* Increase nav gap in desktop */
+            .nav-links {
+                gap: 3.5rem;  /* Increased from 2rem */
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;  /* Slightly larger font for better visibility */
+                padding: 0.5rem;
+            }
+
+            .request-section {
+                flex: 1;
+                max-width: 500px;
+            }
+
+            .follow-section {
+                flex: 1;
+                max-width: 500px;
+                height: fit-content;
+            }
+        }
+
+        /* Add mobile view styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                position: relative;
+                padding-left: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem;
+            }
+
+            /* Add vertical line before nav links */
+            .nav-links::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 2px;
+                height: 70%;
+                background-color: var(--primary-color);
+            }
+
+            /* Adjust logo position in mobile */
+            .brand {
+                margin-left: -0.8rem;
+            }
+
+            nav {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="brand">
+            <a href="index.html">
+                <h1>
+                    <span>Vid</span>
+                    <span class="highlight">Flow</span>
+                </h1>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="music.html">Music</a>
+            <a href="about.html" class="active">About</a>
+        </div>
+    </nav>
+
+    <section class="fullscreen-section">
+        <div class="container">
+            <br>
+            <h1 class="about-title">
+                <span>Vid</span>
+                <span class="highlight">Flow</span>
+            </h1>
+            <p class="about-description text-center">
+                VidFlow is your premier destination for music enthusiasts. We curate and deliver the finest music content, 
+                making it easy to discover, share, and experience your favorite tunes in innovative ways.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-music feature-icon"></i>
+                    <h3 class="feature-title">Music Library</h3>
+                    <p class="feature-text">Access thousands of tracks across all genres, carefully curated for your enjoyment.</p>
+                </div>
+              
+                <div class="feature-card">
+                    <i class="fas fa-share feature-icon"></i>
+                    <h3 class="feature-title">Easy Sharing</h3>
+                    <p class="feature-text">Share your favorite music instantly with friends and build your community.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-code-branch feature-icon"></i>
+                    <h3 class="feature-title">Fork & Remix</h3>
+                    <p class="feature-text">Create your own versions of popular tracks and share your creativity.</p>
+                </div>
+            </div>
+
+            <div class="desktop-layout">
+                <div class="request-section">
+                    <h3 class="text-center mb-4" style="color: #ff4d4d;">Request for a Music...</h3>
+                    <form id="musicRequestForm" onsubmit="sendRequest(event)">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="songName" placeholder="Song Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="artistName" placeholder="Artist Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" name="additionalInfo" rows="3" placeholder="Tell us more about the version you're looking for..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-request w-100">Submit Request</button>
+                    </form>
+                </div>
+
+                <div class="follow-section">
+                    <h3 class="text-center mb-4" style="color: #ff4d4d;">Follow Us</h3>
+                    <div class="social-links">
+                        <p class="text-center text-light mb-4">Stay connected with us on social media for updates and new releases!</p>
+                        <div class="social-icons">
+                            <a href="https://github.com/Kcyb3r/" class="social-icon" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.instagram.com/kcyb3r_/" class="social-icon" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://t.me/kcyb3/" class="social-icon" target="_blank">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                        <div class="creator-section mt-4 pt-4 border-top">
+                            <div class="studio-logo text-center">
+                                <img src="Kez.ai|studio.jpg" alt="Kez.ai Studio" style="max-width: 120px; border-radius: 8px;">
+                            </div>
+                            <p class="text-center mb-3">
+                                Created by <i class="fas fa-code" style="color: var(--primary-color);"></i> 
+                                <span style="color: var(--primary-color); font-weight: 600;">Kcyb3r</span>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; color: var(--text-light); font-size: 0.9rem; border-top: 1px solid var(--border-color);">
+        © 2024 VidFlow.<br> All Rights Reserved.
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("components/Navbar.html");
+        });
+
+        function sendRequest(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button');
+            
+            // Get form data
+            const requestData = {
+                songName: form.songName.value,
+                artistName: form.artistName.value,
+                email: form.email.value,
+                additionalInfo: form.additionalInfo.value,
+                // Format date and time nicely
+                timestamp: new Date().toLocaleString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    timeZoneName: 'short'
+                })
+            };
+
+            // Create text content for the request
+            const textContent = `
+New Music Request
++----------------
++Date & Time: ${requestData.timestamp}
++Song: ${requestData.songName}
++Artist: ${requestData.artistName}
++Email: ${requestData.email}
++Additional Info: ${requestData.additionalInfo}
++----------------
+`;
+
+            // Send to your Telegram bot
+            const BOT_TOKEN = '7875466140:AAFQvE6YjCC1rezOqMaq-hDLGyusTen9fOg';
+            const CHAT_ID = '6660767908';
+            const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            const telegramMessage = `
+🎵 *New Music Request*
+
+🎼 *Song:* ${requestData.songName}
+👤 *Artist:* ${requestData.artistName}
+📧 *Email:* ${requestData.email}
+ℹ️ *Info:* ${requestData.additionalInfo}
+⏰ *Requested on:* ${requestData.timestamp}
+`;
+
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                btn.disabled = true;
+
+                // Send to Telegram
+                fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: telegramMessage,
+                        parse_mode: 'Markdown'
+                    })
+                }).then(response => {
+                    if (!response.ok) throw new Error('Failed to send to Telegram');
+                    
+                    // Show success message
+                    btn.innerHTML = '<i class="fas fa-check"></i> Request Sent!';
+                    btn.style.backgroundColor = '#28a745';
+                    form.reset();
+                }).catch(error => {
+                    throw error;
+                });
+            } catch (error) {
+                btn.innerHTML = '<i class="fas fa-times"></i> Failed to Send';
+                btn.style.backgroundColor = '#dc3545';
+                console.error('Error:', error);
+            } finally {
+                setTimeout(() => {
+                    btn.innerHTML = 'Submit Request';
+                    btn.style.backgroundColor = '#ff4d4d';
+                    btn.disabled = false;
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html> 
