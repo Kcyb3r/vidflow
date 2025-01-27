@@ -115,7 +115,21 @@
     <footer style="text-align: center; padding: 20px; color: #888; font-size: 0.9rem; border-top: 1px solid #333;">
         © 2024 VidFlow.<br>All Rights Reserved.
     </footer>
-
+   <script>
+        function handleFeaturedPlayback() {
+            const audio = document.getElementById('featuredAudio');
+            const button = document.querySelector('.play-featured i');
+            
+            if (audio.paused) {
+                document.querySelectorAll('audio').forEach(a => a.pause());
+                audio.play();
+                button.className = 'fas fa-pause';
+            } else {
+                audio.pause();
+                button.className = 'fas fa-play';
+            }
+        }
+    </script>
  
     <script src="music.js"></script>
 </body>
